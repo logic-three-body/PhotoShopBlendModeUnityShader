@@ -6,3 +6,4 @@ BlendModeAndTest/.vscode/
 BlendModeAndTest/Library/
 BlendModeAndTest/Temp/
 BlendModeAndTest/Logs/
+*.psd

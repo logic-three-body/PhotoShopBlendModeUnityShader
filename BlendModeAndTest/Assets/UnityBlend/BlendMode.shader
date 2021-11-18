@@ -11,10 +11,12 @@ Shader "Blend/BlendMode"
     }
     SubShader
     {
-        Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+       // Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+        Tags { "RenderType" = "Opaque" "Queue" = "Geometry"}
         ZWrite [_ZWriteMode]
-        Blend [_SrcBlend] [_DstBlend]
-        // blend SrcAlpha OneMinusDstAlpha
+
+        Blend [_SrcBlend] [_DstBlend] 
+       // blend SrcAlpha OneMinusDstAlpha
         BlendOp [_BlendOp]
         Pass
         {
@@ -51,6 +53,8 @@ Shader "Blend/BlendMode"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv) * _MainColor;
+                fixed test = tex2D(_MainTex, i.uv).a;
+                //return fixed4(test,test,test,1);
                 return col;
             }
             ENDCG

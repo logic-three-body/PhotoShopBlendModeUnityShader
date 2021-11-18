@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 738637903}
   - component: {fileID: 738637902}
   m_Layer: 0
-  m_Name: QuadB
+  m_Name: "QuadB\u57CE\u5821"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 1452619995}
   - component: {fileID: 1452619994}
   m_Layer: 0
-  m_Name: QuadA
+  m_Name: "QuadA\u5C0F\u65B0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
