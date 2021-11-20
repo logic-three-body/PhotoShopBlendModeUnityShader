@@ -13,6 +13,9 @@ Shader "Blend/PSBlendMode"
         _Color2 ("TextureColor_B", Color) = (1.0, 1.0, 1.0, 1.0)
         _MainTex2 ("Texture_B", 2D) = "white" { }
         [HideInInspector]_IDChoose ("", float) = 0.0
+        //[HideInInspector]_BlendMode ("", Range(0.0, 5.0)) = 0.0
+        [HideInInspector]_BlendCategoryChoose ("", float) = 0.0
+
     }
     SubShader
     {
