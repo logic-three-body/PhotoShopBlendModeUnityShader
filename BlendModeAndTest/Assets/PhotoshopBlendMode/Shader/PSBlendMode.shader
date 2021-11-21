@@ -21,12 +21,12 @@ Shader "Blend/PSBlendMode"
     {
         Tags
         {
-            "RenderType" = "Opaque" "Queue" = "Geometry"
+            "RenderType" = "Transparent" "Queue" = "Transparent"
         }
         ZWrite On
 
         Blend One Zero //Normal      or blend off
-
+       // Blend SrcAlpha OneMinusSrcAlpha
 
 
 
@@ -68,12 +68,20 @@ Shader "Blend/PSBlendMode"
 
             float4 frag(v2f i) : SV_Target
             {
-                float4 D = tex2D(_MainTex1, i.uv) * _Color1;
-                float4 S = tex2D(_MainTex2, i.uv) * _Color2;
-                return float4(OutPutMode(S, D, _ModeID), 1.0);
+                float4 D = tex2D(_MainTex1, i.uv) * _Color1;//base
+                float4 S = tex2D(_MainTex2, i.uv) * _Color2;//blend
+                //if(_ModeID!=1)
+                //    S.rgb = Alphablend(S,D);    
+                float4 result = float4(OutPutMode(S, D, _ModeID),S.a);
+                if(_ModeID!=1)
+                {
+                   result.rgb = Alphablend(result,D);
+                }
+                return float4(result.rgb,1.0);
             }
             ENDCG
         }
     }
     CustomEditor "BlendModeGUI"
 }
+

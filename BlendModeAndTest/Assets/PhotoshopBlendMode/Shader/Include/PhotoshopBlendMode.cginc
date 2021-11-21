@@ -5,20 +5,21 @@
 //http://lolengine.net/blog/2013/07/27/rgb-to-hsv-in-glsl
 
 //正常
-float3 Normal(float3 Src, float3 Dst)
+float3 Normal(float4 Src, float4 Dst)
 {
     Dst = 0.;
-    return Src.rgb + Dst.rgb;
+    return (Src.rgb + Dst.rgb);
 }
 
 float3 Alphablend(float4 Src, float4 Dst)
 {
-    float4 C = Src.a * Src + (1.0 - Src.a) * Dst;
+    float4 C = Src.a * Src + (1.0 - Src.a) * Dst*Dst.a;
     return C.rgb;
 }
 
+
 //变暗
-float3 Darken(float3 Src, float3 Dst)
+float3 Darken(float4 Src, float4 Dst)
 {
     return min(Src, Dst);
 }
@@ -81,6 +82,15 @@ float3 LighterColor(float3 Src, float3 Dst)
 float overlay(float Src, float Dst)
 {
     return(Dst < 0.5) ? 2.0 * Src * Dst : 1.0 - 2.0 * (1.0 - Src) * (1.0 - Dst);
+}
+
+float3 overlay(float4 Src, float4 Dst)
+{
+    float3 C;
+    C.x = overlay(Src.x, Dst.x);
+    C.y = overlay(Src.y, Dst.y);
+    C.z = overlay(Src.z, Dst.z);
+    return C;
 }
 
 //柔光
